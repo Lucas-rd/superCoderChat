@@ -19,7 +19,7 @@ chatBox.addEventListener('keyup', evt=>{
     if(evt.key==='Enter'){
         if(chatBox.value.trim().length>0){
             //por lo menos se envia un simbolo.
-            socket.emit('message',{user, message:chatBox.value.trim()})
+            socket.emit('message',{user:`<b>${user}</b>`, message:chatBox.value.trim()})
             chatBox.value='';
         }
     }
@@ -29,7 +29,7 @@ chatBox.addEventListener('keyup', evt=>{
 socket.on('log', data=>{
     let messages="";
     data.forEach(log=>{
-        messages= messages + `${log.user} dice: ${log.message} <br>`
+        messages= messages + `${log.user} says: <br> ${log.message} <br><br><br>`
     })
     log.innerHTML = messages;
 })
